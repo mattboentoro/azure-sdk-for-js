@@ -12,26 +12,26 @@ In this document we'll outline a few options available to you when a transitive 
 
 ## Example scenario
 
-Let's assume that a vulnerability has been found in [node-fetch] version 2.6.6 and that you use `@azure/keyvault-keys` directly. Your security scan identified this vulnerability and asks to upgrade to 2.6.7 or higher.
+Let's assume that a vulnerability has been found in [@typespec/ts-http-runtime] version 0.3.3 and that you use `@azure/keyvault-keys` directly. Your security scan identified this vulnerability and asks to upgrade to 0.3.4 or higher.
 
 The outputs below assume you're using `npm v8.1.2` with a lockfile, but we will provide instructions for Yarn as well.
 
 ### Identifying the dependency tree
 
-First, let's see how `node-fetch` is pulled into our dependency tree.
+First, let's see how `@typespec/ts-http-runtime` is pulled into our dependency tree.
 
 ```
-> npm ls node-fetch
+> npm ls @typespec/ts-http-runtime
 
 keyvault@1.0.0 /home/user/my-app
-└─┬ @azure/keyvault-keys@4.3.0
-  └─┬ @azure/core-http@2.2.3
-    └── node-fetch@2.6.6
+└─┬ @azure/keyvault-keys@4.10.0
+  └─┬ @azure/core-rest-pipeline@1.19.0
+    └── @typespec/ts-http-runtime@0.3.3
 ```
 
-> If you are using Yarn you can use `yarn why node-fetch` with similar results.
+> If you are using Yarn you can use `yarn why @typespec/ts-http-runtime` with similar results.
 
-It looks like `node-fetch`, a dependency of `@azure/core-http@2.2.3` is being pulled in _transitively_ via `@azure/keyvault-keys@4.3.0`.
+It looks like `@typespec/ts-http-runtime`, a dependency of `@azure/core-rest-pipeline@1.19.0` is being pulled in _transitively_ via `@azure/keyvault-keys@4.10.0`.
 
 Because I use a lockfile, running `npm install` again will not help me here. But `npm` provides a few utilities that can.
 
@@ -48,14 +48,14 @@ changed 1 package, and audited 51 packages in 421ms
   run `npm fund` for details
 
 found 0 vulnerabilities
-keyvault main % npm ls node-fetch
+keyvault main % npm ls @typespec/ts-http-runtime
 keyvault@1.0.0 /home/user/my-app
-└─┬ @azure/keyvault-keys@4.3.0
-  └─┬ @azure/core-http@2.2.3
-    └── node-fetch@2.6.7
+└─┬ @azure/keyvault-keys@4.10.0
+  └─┬ @azure/core-rest-pipeline@1.19.0
+    └── @typespec/ts-http-runtime@0.3.4
 ```
 
-As you can see node-fetch has been updated to 2.6.7, without having to wait for a new version of `@azure/core-http`.
+As you can see `@typespec/ts-http-runtime` has been updated to 0.3.4, without having to wait for a new version of `@azure/core-rest-pipeline`.
 
 For more information on `npm audit` please refer to the [npm-audit documentation][npm-audit].
 
@@ -63,10 +63,10 @@ For more information on `npm audit` please refer to the [npm-audit documentation
 
 ### Using `npm update`
 
-Not all updates are due to security vulnerabilities. Sometimes you just want to update a transitive dependency without deleting your lockfile. In that case, `npm update node-fetch` can help. Let's see what that looks like:
+Not all updates are due to security vulnerabilities. Sometimes you just want to update a transitive dependency without deleting your lockfile. In that case, `npm update @typespec/ts-http-runtime` can help. Let's see what that looks like:
 
 ```
-> npm update node-fetch
+> npm update @typespec/ts-http-runtime
 
 changed 1 package, and audited 51 packages in 320ms
 
@@ -74,16 +74,16 @@ changed 1 package, and audited 51 packages in 320ms
   run `npm fund` for details
 
 found 0 vulnerabilities
-keyvault main % npm ls node-fetch
+keyvault main % npm ls @typespec/ts-http-runtime
 keyvault@1.0.0 /home/user/my-app
-└─┬ @azure/keyvault-keys@4.3.0
-  └─┬ @azure/core-http@2.2.3
-    └── node-fetch@2.6.7
+└─┬ @azure/keyvault-keys@4.10.0
+  └─┬ @azure/core-rest-pipeline@1.19.0
+    └── @typespec/ts-http-runtime@0.3.4
 ```
 
 Awesome!
 
-> If you are using Yarn you can use `yarn up node-fetch` with similar results.
+> If you are using Yarn you can use `yarn up @typespec/ts-http-runtime` with similar results.
 
 > Note: In some previous versions of `npm`, `npm update` would only update _top-level_ dependencies. If you're using npm 6.x for example you can provide the `--depth` argument to achieve similar results.
 
@@ -94,7 +94,7 @@ For more information on `npm update` please refer to the [npm-update documentati
 Feel free to [file an issue][file-an-issue] and start a discussion, we're here to help and will try to do so to the best of our abilities!
 
 [caret]: https://docs.npmjs.com/cli/v6/using-npm/semver#caret-ranges-123-025-004
-[node-fetch]: https://www.npmjs.com/package/node-fetch
+[@typespec/ts-http-runtime]: https://www.npmjs.com/package/@typespec/ts-http-runtime
 [npm-audit]: https://docs.npmjs.com/cli/v8/commands/npm-audit
 [npm-update]: https://docs.npmjs.com/cli/v8/commands/npm-update
 [file-an-issue]: https://github.com/Azure/azure-sdk-for-js/issues/new/choose
