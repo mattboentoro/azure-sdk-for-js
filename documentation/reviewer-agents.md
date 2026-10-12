@@ -1,6 +1,6 @@
 # Reviewer Agents
 
-This repository includes eight specialized AI reviewer agents that can review
+This repository includes seven specialized AI reviewer agents that can review
 pull requests for specific quality dimensions. Each agent is an expert in its
 domain and produces targeted, actionable feedback.
 
@@ -94,7 +94,7 @@ In the Copilot Chat panel, use the `@` prefix to summon an agent by name:
 ```
 
 ```
-@tester Are there any untested public methods in sdk/storage/storage-blob/src/BlobClient.ts?
+@tester Are there any untested public methods in sdk/storage/storage-blob/src/BlobLeaseClient.ts?
 ```
 
 ```

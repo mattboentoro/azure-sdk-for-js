@@ -208,10 +208,10 @@ See the [JavaScript Codegen Quick Start for Test](https://github.com/Azure/azure
       "AssetsRepo": "Azure/azure-sdk-assets",
       "AssetsRepoPrefixPath": "js",
       "TagPrefix": "js/keyvault/keyvault-certificates",
-      "Tag": "js/keyvault/keyvault-certificates_43821e21b3"
+      "Tag": "js/keyvault/keyvault-certificates_de01a61da9"
     }
     ```
-    And the recordings are located at [here](https://github.com/Azure/azure-sdk-assets/tree/js/keyvault/keyvault-certificates_43821e21b3).
+    And the recordings are located at [here](https://github.com/Azure/azure-sdk-assets/tree/js/keyvault/keyvault-certificates_de01a61da9).
 
 
 # How to write samples
